@@ -8,7 +8,7 @@ const Footer = () => {
     { name: '地圖特色', target: 'features', isExternal: false },
     { name: '截圖展示', target: 'gallery', isExternal: false },
     { name: '立即下載', target: 'download', isExternal: false },
-    { name: '安裝教學', target: 'https://www.example.com/guide', isExternal: true },
+    { name: '安裝教學', target: '#', isExternal: true },
   ];
 
   return (
@@ -105,11 +105,11 @@ const Footer = () => {
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="text-sm font-bold text-red-500">fm487</span>
-                  <span className="text-[11px] text-gray-300 font-medium">指令編寫 · 畫材質包</span>
+                  <span className="text-[11px] text-gray-300 font-medium">指令編寫 · 材質包製作</span>
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="text-sm font-bold text-cyan-400">Arctic_Peng</span>
-                  <span className="text-[11px] text-gray-300 font-medium">創意設計 · 地圖製作</span>
+                  <span className="text-[11px] text-gray-300 font-medium">創意設計 · 地圖製作 · 提供靈感(菇)</span>
                 </div>
               </div>
             </div>
