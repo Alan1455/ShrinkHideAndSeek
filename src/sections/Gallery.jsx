@@ -1,63 +1,115 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Image as ImageIcon, Maximize2, MapPin } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Image as ImageIcon, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
+
+import img1 from '../assets/1.png';
+import img2 from '../assets/2.png';
+import img3 from '../assets/3.png';
+import img4 from '../assets/4.png';
+import img5 from '../assets/5.png';
+import img6 from '../assets/6.png';
+import img7 from '../assets/7.png';
+import img8 from '../assets/8.png';
+import img9 from '../assets/9.png';
+import img10 from '../assets/10.png';
+import img11 from '../assets/11.png';
+import img12 from '../assets/12.png';
+
 
 const Gallery = () => {
-  const images = [
-    { src: "/src/assets/backgroud.png", title: "幽靜深谷", url: "#" },
-    { src: "/src/assets/backgroud.png", title: "遺落神廟", url: "#" },
-    { src: "/src/assets/backgroud.png", title: "微光森林", url: "#" },
-    { src: "/src/assets/backgroud.png", title: "終界邊境", url: "#" },
-    { src: "/src/assets/backgroud.png", title: "古老遺蹟", url: "#" }
-  ];
+  const [scenes, setScenes] = useState([
+    { title: "林中小屋", images: [img1, img2, img3, img4], current: 0 },
+    { title: "沙漠遺跡", images: [img5, img6, img7, img8], current: 0 },
+    { title: "勇者與魔王", images: [img9, img10, img11, img12], current: 0 },
+    { title: "todo1", images: [img1], current: 0 },
+    { title: "todo2", images: [img1], current: 0 },
+    { title: "todo3", images: [img1], current: 0 }
+  ]);
+
+  const updateImg = (e, index, direction) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const newScenes = [...scenes];
+    const len = newScenes[index].images.length;
+    newScenes[index].current = (newScenes[index].current + direction + len) % len;
+    setScenes(newScenes);
+  };
 
   return (
-    <section id="gallery" className="py-24 px-6 bg-black select-none">
+    <section id="gallery" className="py-24 px-6 bg-black select-none selection:bg-blue-500/30">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-row items-center justify-center gap-4 mb-20">
-          <div className="p-3 rounded-2xl bg-blue-500/10 border border-blue-500/20">
-            <ImageIcon className="text-blue-500" size={28} />
+        <div className="flex flex-row items-center justify-center gap-5 mb-24">
+          <div className="p-3 rounded-2xl bg-blue-500/5 border border-blue-500/10 shadow-[0_0_40px_rgba(59,130,246,0.05)]">
+            <ImageIcon className="text-blue-500" size={26} />
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tighter">
+          <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter">
             場景截圖
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
-          {images.map((img, i) => (
-            <motion.a
+          {scenes.map((scene, i) => (
+            <motion.div
               key={i}
-              href={img.url}
-              target="_blank"
-              rel="noopener noreferrer"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -8 }}
-              className={`group relative aspect-video rounded-[2rem] overflow-hidden bg-white/5 border border-white/10 block cursor-pointer
+              whileHover={{ y: -5 }}
+              className={`group relative aspect-video rounded-[2.5rem] overflow-hidden bg-white/[0.01] border border-white/5 shadow-2xl
                 ${i === 0 ? 'md:col-span-4 md:row-span-2' : 'md:col-span-2'}`}
             >
-              <img 
-                src={img.src} 
-                alt={img.title} 
-                className="w-full h-full object-cover opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out" 
-              />
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={scene.current}
+                  src={scene.images[scene.current]}
+                  initial={{ opacity: 0, filter: 'blur(10px)' }}
+                  animate={{ opacity: 1, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.6 }}
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-85 transition-all duration-700"
+                />
+              </AnimatePresence>
 
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
+              <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between z-20 opacity-0 group-hover:opacity-85 transition-all duration-500">
+                <button
+                  onClick={(e) => updateImg(e, i, -1)}
+                  className="p-2.5 rounded-full bg-white/10 backdrop-blur-2xl border border-white/10 text-white 
+                             hover:bg-white/20 hover:scale-110 active:scale-90 transition-all shadow-lg"
+                >
+                  <ChevronLeft size={16} strokeWidth={3} />
+                </button>
+                <button
+                  onClick={(e) => updateImg(e, i, 1)}
+                  className="p-2.5 rounded-full bg-white/10 backdrop-blur-2xl border border-white/10 text-white 
+                             hover:bg-white/20 hover:scale-110 active:scale-90 transition-all shadow-lg"
+                >
+                  <ChevronRight size={16} strokeWidth={3} />
+                </button>
+              </div>
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-end p-8 pointer-events-none opacity-0 group-hover:opacity-85 transition-all duration-500">
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <MapPin size={16} className="text-blue-400" />
-                    <span className="text-white font-medium">{img.title}</span>
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 backdrop-blur-md">
+                      <MapPin size={16} strokeWidth={2.5} />
+                    </div>
+                    <h3 className="text-xl font-bold text-white tracking-tight text-shadow-sm">
+                      {scene.title}
+                    </h3>
                   </div>
-                  <div className="p-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white">
-                    <Maximize2 size={18} />
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-2xl border border-white/10 shadow-inner">
+                    <span className="text-[10px] font-black text-white/90 tracking-widest leading-none">
+                      {scene.current + 1}
+                    </span>
+                    <div className="w-[1px] h-2.5 bg-white/20" />
+                    <span className="text-[10px] font-black text-white/40 tracking-widest leading-none">
+                      {scene.images.length}
+                    </span>
                   </div>
                 </div>
               </div>
-
-              <div className="absolute inset-0 border border-white/0 group-hover:border-white/20 rounded-[2rem] transition-colors duration-300 pointer-events-none" />
-            </motion.a>
+              <div className="absolute inset-0 border border-white/0 group-hover:border-white/10 rounded-[2.5rem] transition-colors duration-700 pointer-events-none" />
+            </motion.div>
           ))}
         </div>
       </div>

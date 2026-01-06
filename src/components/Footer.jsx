@@ -59,7 +59,7 @@ const Footer = () => {
                 </div>
                 <h3 className="font-bold text-white text-lg">官方社群</h3>
               </div>
-              <p className="text-sm text-gray-300 mb-6 leading-relaxed font-medium">加入 Discord 獲取第一手更新資訊。</p>
+              <p className="text-sm text-gray-300 mb-6 leading-relaxed font-medium">加入 Discord 獲取最新的更新資訊。</p>
               <div className="space-y-3">
                 <a href="#" className="flex items-center gap-2 text-sm text-white hover:text-blue-400 transition-colors font-medium">
                   <div className="w-1.5 h-1.5 rounded-full bg-blue-500" /> Discord 社群
@@ -84,7 +84,7 @@ const Footer = () => {
                 </div>
                 <div>
                   <p className="text-[10px] text-gray-300 uppercase tracking-widest mb-1 font-bold">推薦光影</p>
-                  <a href="#" className="text-sm text-white hover:text-purple-400 transition-colors underline decoration-purple-500/30 underline-offset-4 font-medium">
+                  <a href="https://modrinth.com/shader/complementary-reimagined/version/r5.6.1" target="_blank" className="text-sm text-white hover:text-purple-400 transition-colors underline decoration-purple-500/30 underline-offset-4 font-medium">
                     Complementary Reimagined
                   </a>
                 </div>

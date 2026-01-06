@@ -25,20 +25,14 @@ const Download = () => {
         </div>
 
         <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-          <a 
-            href="https://www.example.com/download-link" 
-            target="_blank" 
-            rel="noopener noreferrer"
+          <a href="https://www.example.com/download-link" target="_blank" rel="noopener noreferrer"
             className="group flex items-center justify-center gap-3 px-12 py-6 bg-white text-black rounded-full font-bold text-xl hover:bg-blue-50 transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
           >
             <DownloadIcon size={24} className="group-hover:translate-y-0.5 transition-transform" />
             立即下載地圖 (v1.0)
           </a>
 
-          <a 
-            href="https://www.example.com/guide" 
-            target="_blank" 
-            rel="noopener noreferrer"
+          <a href="https://www.example.com/guide" target="_blank" rel="noopener noreferrer"
             className="group flex items-center justify-center gap-3 px-12 py-6 bg-white/5 text-white border border-white/10 rounded-full font-bold text-xl backdrop-blur-md hover:bg-white/10 transition-all hover:scale-105 active:scale-95"
           >
             <BookOpen size={24} className="group-hover:rotate-3 transition-transform" />
@@ -49,14 +43,11 @@ const Download = () => {
         <div className="mt-12 pt-8 border-t border-white/5 flex flex-col items-center">
           <p className="text-gray-500 text-sm flex items-center gap-2">
             遇到問題？前往 
-            <a 
-              href="https://www.example.com/discord" 
-              target="_blank"
-              rel="noopener noreferrer"
+            <a href="https://www.example.com/discord" target="_blank" rel="noopener noreferrer"
               className="text-gray-300 hover:text-blue-400 underline underline-offset-4 transition-colors inline-flex items-center gap-1"
             >
               Discord 社群 <ExternalLink size={12} />
-            </a> 
+            </a>
             尋求協助
           </p>
         </div>

@@ -1,13 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Sparkles, 
-  Eye, 
-  Music, 
-  Map as MapIcon, 
-  Compass, 
-  ShieldCheck 
-} from 'lucide-react';
+import { Ghost, Minimize2, Swords, Music, Map, Zap } from 'lucide-react';
 
 const FeatureCard = ({ title, desc, index, icon: Icon }) => (
   <motion.div 
@@ -28,35 +21,35 @@ const FeatureCard = ({ title, desc, index, icon: Icon }) => (
 
 const Features = () => {
   const features = [
-    { 
-      title: "極致光影", 
-      desc: "精心調教的環境光效與陰影表現，讓 Minecraft 的每一個角落都充滿電影般的敘事感。", 
-      icon: Sparkles 
+    {
+      title: "縮小機制",
+      desc: "玩家可以自由切換體型大小，以微觀視角進入原本無法到達的地圖縫隙。",
+      icon: Minimize2
     },
     { 
-      title: "隱藏謎題", 
-      desc: "在光影交錯的縫隙中隱藏著關鍵線索，唯有細心的觀察者才能破解最終的真相。", 
-      icon: Eye 
+      title: "策略躲藏",
+      desc: "利用縮小後的體型優勢，躲入盆栽、轉角或地板縫隙中，配合地圖點位調達成完美的視覺隱身。",
+      icon: Ghost
+    },
+    {
+      title: "沉浸原聲",
+      desc: "配備專屬的地圖背景音樂與環境音效，為你的遊戲帶來前所未有的視聽震撼。",
+      icon: Music
+    },
+    {
+      title: "細緻場景",
+      desc: "地圖包含小屋、沙漠等多種多樣化場景，所有地圖皆經過細心製作，確保微觀下的細節程度。",
+      icon: Map
     },
     { 
-      title: "沉浸原聲", 
-      desc: "配備專屬的地圖背景音樂與環境音效，為你的冒險旅程帶來前所未有的視聽震撼。", 
-      icon: Music 
+      title: "公平對抗",
+      desc: "精心設計的職業技能平衡，讓躲藏者與獵人在遊戲中展開一場腦力與反應的極限博弈。",
+      icon: Swords
     },
-    { 
-      title: "廣闊世界", 
-      desc: "從深邃的地下城到壯麗的遺蹟，多樣化的場景設計讓你流連忘返，探索永無止盡。", 
-      icon: MapIcon 
-    },
-    { 
-      title: "非線性探索", 
-      desc: "打破傳統的單一路線，多重的選擇將導向不同的結局，寫下屬於你自己的故事篇章。", 
-      icon: Compass 
-    },
-    { 
-      title: "流暢體驗", 
-      desc: "針對中低階電腦進行了極致的效能優化，確保在享受高畫質的同時依然保有絲滑的幀率。", 
-      icon: ShieldCheck 
+    {
+      title: "流暢運行",
+      desc: "專為大規模地圖與複雜指令包進行效能優化，即使在低配電腦上也能享受絲滑的遊戲體驗。",
+      icon: Zap
     }
   ];
 
@@ -68,7 +61,7 @@ const Features = () => {
             超越想像的地圖體驗
           </h2>
           <p className="text-gray-500 max-w-2xl mx-auto">
-            我們結合了頂尖的建築美學與複雜的邏輯指令，只為呈現最純粹的解謎冒險。
+            我們結合了頂尖的建築美學與複雜的指令邏輯，只為呈現我們想像中的躲貓貓。
           </p>
         </div>
 

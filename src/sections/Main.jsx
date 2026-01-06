@@ -6,14 +6,11 @@ import { Download, Play, ChevronDown } from 'lucide-react';
 const Main = () => {
   return (
     <section id="hero" className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black select-none">
-      
-      {/* --- 背景層 --- */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
-          style={{ 
-            backgroundImage: `url('/src/assets/backgroud.png')`,
-            filter: 'brightness(0.4) contrast(1.2)' 
+          style={{
+            filter: 'brightness(0.4) contrast(1.2)'
           }}
         />
         <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/30 blur-[150px] rounded-full animate-pulse" />
@@ -23,7 +20,6 @@ const Main = () => {
         <div className="absolute inset-0 opacity-30 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
       </div>
 
-      {/* --- 內容層 --- */}
       <motion.div 
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -69,14 +65,12 @@ const Main = () => {
         </div>
       </motion.div>
 
-      {/* --- 修正後的底部指示器 --- */}
       <div className="absolute bottom-10 left-0 w-full z-10 pointer-events-none">
         <motion.div 
           animate={{ y: [0, 10, 0] }}
           transition={{ repeat: Infinity, duration: 2 }}
           className="flex flex-col items-center justify-center gap-2"
         >
-          {/* 移除 ml 補償，並確保整體居中 */}
           <span className="text-[10px] text-white/40 uppercase tracking-[0.3em] leading-none">
             Scroll Down
           </span>
