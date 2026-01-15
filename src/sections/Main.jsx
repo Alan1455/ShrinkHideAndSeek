@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-scroll';
 import { Download, Play, ChevronDown } from 'lucide-react';
 
+
 const Main = () => {
   return (
     <section id="hero" className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black select-none">

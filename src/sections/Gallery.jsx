@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Image as ImageIcon, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 
-import img1 from '../assets/1.png';
-import img2 from '../assets/2.png';
-import img3 from '../assets/3.png';
-import img4 from '../assets/4.png';
-import img5 from '../assets/5.png';
-import img6 from '../assets/6.png';
-import img7 from '../assets/7.png';
-import img8 from '../assets/8.png';
-import img9 from '../assets/9.png';
-import img10 from '../assets/10.png';
-import img11 from '../assets/11.png';
-import img12 from '../assets/12.png';
+import img1 from '../assets/1.webp';
+import img2 from '../assets/2.webp';
+import img3 from '../assets/3.webp';
+import img4 from '../assets/4.webp';
+import img5 from '../assets/5.webp';
+import img6 from '../assets/6.webp';
+import img7 from '../assets/7.webp';
+import img8 from '../assets/8.webp';
+import img9 from '../assets/9.webp';
+import img10 from '../assets/10.webp';
+import img11 from '../assets/11.webp';
+import img12 from '../assets/12.webp';
 
 
 const Gallery = () => {
@@ -80,8 +80,7 @@ const Gallery = () => {
                 </button>
                 <button
                   onClick={(e) => updateImg(e, i, 1)}
-                  className="p-2.5 rounded-full bg-white/10 backdrop-blur-2xl border border-white/10 text-white 
-                             hover:bg-white/20 hover:scale-110 active:scale-90 transition-all shadow-lg"
+                  className="p-2.5 rounded-full bg-white/10 backdrop-blur-2xl border border-white/10 text-white hover:bg-white/20 hover:scale-110 active:scale-90 transition-all shadow-lg"
                 >
                   <ChevronRight size={16} strokeWidth={3} />
                 </button>

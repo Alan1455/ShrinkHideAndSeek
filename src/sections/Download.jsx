@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Download as DownloadIcon, BookOpen, ExternalLink, MessageCircle } from 'lucide-react';
 
+
 const Download = () => {
   return (
     <section id="download" className="relative py-40 px-6 bg-black flex items-center justify-center overflow-hidden select-none">

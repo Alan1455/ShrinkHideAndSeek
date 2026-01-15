@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-scroll';
 import { Users, MessageCircle, Cpu, ExternalLink, ShieldCheck, FileText, Heart, Youtube } from 'lucide-react';
 
+
 const Footer = () => {
   const navLinks = [
     { name: '首頁', target: 'hero', isExternal: false },
