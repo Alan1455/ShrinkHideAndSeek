@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useTransform, useMotionValue, animate } from 'framer-motion';
-import { Ghost, Minimize2, Swords, Music, Map, Zap, Home, Eye } from 'lucide-react';
+import { Ghost, Minimize2, Swords, Music, Map, Zap, Home, Eye, Sword } from 'lucide-react';
 
 const FeatureCard = ({ title, desc, index, icon: Icon }) => {
   const constraintsRef = useRef(null);
@@ -58,19 +58,19 @@ const FeatureCard = ({ title, desc, index, icon: Icon }) => {
         return (
           <div className="flex items-center justify-center h-full gap-4">
             <motion.div 
-              animate={{ x: [0, 40, 0], rotate: [0, -10, 0] }}
+              animate={{ x: [0, 30, 0], rotate: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 2, ease: "backInOut" }}
               className="text-red-500/60"
             >
-              <Swords size={30} />
+              <Sword size={30} />
             </motion.div>
             <div className="w-[1px] h-10 bg-white/10" />
             <motion.div 
-              animate={{ x: [0, -40, 0], rotate: [0, 10, 0] }}
+              animate={{ x: [0, -30, 0], rotate: [0, 10, 0] }}
               transition={{ repeat: Infinity, duration: 2, ease: "backInOut" }}
               className="text-blue-500/60"
             >
-              <Swords size={30} className="rotate-180" />
+              <Sword size={30} className="-scale-x-100" />
             </motion.div>
           </div>
         );

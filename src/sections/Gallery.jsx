@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Image as ImageIcon, MapPin, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -25,6 +25,14 @@ const Gallery = () => {
     { title: "todo2", images: [img1], current: 0 },
     { title: "todo3", images: [img1], current: 0 }
   ]);
+
+  useEffect(() => {
+    scenes.forEach(scene => {
+      const nextIndex = (scene.current + 1) % scene.images.length;
+      const img = new Image();
+      img.src = scene.images[nextIndex];
+    });
+  }, [scenes]);
 
   const updateImg = (e, index, direction) => {
     e.preventDefault();
@@ -62,6 +70,8 @@ const Gallery = () => {
                 <motion.img
                   key={scene.current}
                   src={scene.images[scene.current]}
+                  loading={i === 0 ? "eager" : "lazy"}
+                  fetchpriority={i === 0 ? "high" : "auto"}
                   initial={{ opacity: 0, filter: 'blur(10px)' }}
                   animate={{ opacity: 1, filter: 'blur(0px)' }}
                   exit={{ opacity: 0 }}
@@ -73,8 +83,7 @@ const Gallery = () => {
               <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 flex justify-between z-20 opacity-0 group-hover:opacity-85 transition-all duration-500">
                 <button
                   onClick={(e) => updateImg(e, i, -1)}
-                  className="p-2.5 rounded-full bg-white/10 backdrop-blur-2xl border border-white/10 text-white 
-                             hover:bg-white/20 hover:scale-110 active:scale-90 transition-all shadow-lg"
+                  className="p-2.5 rounded-full bg-white/10 backdrop-blur-2xl border border-white/10 text-white hover:bg-white/20 hover:scale-110 active:scale-90 transition-all shadow-lg"
                 >
                   <ChevronLeft size={16} strokeWidth={3} />
                 </button>

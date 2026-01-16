@@ -10,7 +10,7 @@ const Download = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/10 blur-[120px] rounded-full" />
       </div>
 
-      <motion.div 
+      <motion.div
         initial={{ scale: 0.95, opacity: 0 }}
         whileInView={{ scale: 1, opacity: 1 }}
         viewport={{ once: true }}
@@ -22,7 +22,7 @@ const Download = () => {
         </h2>
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 mb-12">
           <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-          <p className="text-gray-300 text-sm font-medium">Minecraft 版本要求: 1.21.10+</p>
+          <p className="text-gray-300 text-sm font-medium">Minecraft 版本要求: 1.21.10</p>
         </div>
 
         <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
