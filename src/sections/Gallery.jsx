@@ -17,6 +17,7 @@ import img12 from '../assets/12.webp';
 
 
 const Gallery = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [scenes, setScenes] = useState([
     { title: "林中小屋", images: [img1, img2, img3, img4], current: 0 },
     { title: "沙漠遺跡", images: [img5, img6, img7, img8], current: 0 },
@@ -27,14 +28,16 @@ const Gallery = () => {
   ]);
 
   useEffect(() => {
-    scenes.forEach(scene => {
-      const nextIndex = (scene.current + 1) % scene.images.length;
-      const img = new Image();
-      img.src = scene.images[nextIndex];
+    scenes.forEach((scene) => {
+      scene.images.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
     });
-  }, [scenes]);
+  }, []);
 
   const updateImg = (e, index, direction) => {
+    setIsLoaded(false);
     e.preventDefault();
     e.stopPropagation();
     const newScenes = [...scenes];
@@ -63,19 +66,21 @@ const Gallery = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               whileHover={{ y: -5 }}
-              className={`group relative aspect-video rounded-[2.5rem] overflow-hidden bg-white/[0.01] border border-white/5 shadow-2xl
-                ${i === 0 ? 'md:col-span-4 md:row-span-2' : 'md:col-span-2'}`}
+              className={`group relative aspect-video rounded-[2.5rem] overflow-hidden bg-white/[0.01] border border-white/5 shadow-2xl ${i === 0 ? 'md:col-span-4 md:row-span-2' : 'md:col-span-2'}`}
             >
-              <AnimatePresence mode="wait">
+              <AnimatePresence>
                 <motion.img
                   key={scene.current}
                   src={scene.images[scene.current]}
+                  onLoad={() => setIsLoaded(true)}
                   loading={i === 0 ? "eager" : "lazy"}
+                  decoding="async"
                   fetchpriority={i === 0 ? "high" : "auto"}
                   initial={{ opacity: 0, filter: 'blur(10px)' }}
                   animate={{ opacity: 1, filter: 'blur(0px)' }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.4 }}
+                  style={{ backgroundColor: '#111' }}
                   className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-85 transition-all duration-700"
                 />
               </AnimatePresence>
