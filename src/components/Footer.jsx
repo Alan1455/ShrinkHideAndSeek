@@ -19,7 +19,7 @@ const Footer = () => {
         <div className="flex flex-col lg:flex-row gap-16 lg:gap-8">
           <div className="w-full lg:w-1/4 space-y-8">
             <div>
-              <h2 className="text-3xl font-bold text-white tracking-tighter mb-2">縮小躲貓貓</h2>
+              <h2 className="text-3xl font-bold text-white tracking-tighter mb-2">縮小鬼抓人</h2>
               <p className="text-gray-400 text-sm italic">Small but Grand Adventure.</p>
             </div>
             <nav className="flex flex-col gap-4">

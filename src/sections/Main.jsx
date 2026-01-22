@@ -31,7 +31,7 @@ const Main = () => {
           <motion.h1 
             className="text-7xl md:text-9xl font-bold tracking-tighter text-white mb-4 drop-shadow-[0_10px_50px_rgba(0,0,0,0.8)]"
           >
-            縮小躲貓貓
+            縮小鬼抓人
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, letterSpacing: "0.2em" }}

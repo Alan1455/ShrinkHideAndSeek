@@ -205,7 +205,7 @@ const Features = () => {
             超越想像的地圖體驗
           </motion.h2>
           <p className="text-gray-500 max-w-2xl mx-auto text-base opacity-80">
-            我們結合了頂尖的建築美學與複雜的指令邏輯，只為呈現我們想像中的躲貓貓。
+            我們結合了頂尖的建築美學與複雜的指令邏輯，只為呈現我們想像中的鬼抓人。
           </p>
         </div>
 
