@@ -17,7 +17,6 @@ import img12 from '../assets/12.webp';
 
 
 const Gallery = () => {
-  const [isLoaded, setIsLoaded] = useState(false);
   const [scenes, setScenes] = useState([
     { title: "林中小屋", images: [img1, img2, img3, img4], current: 0 },
     { title: "沙漠遺跡", images: [img5, img6, img7, img8], current: 0 },
@@ -37,13 +36,16 @@ const Gallery = () => {
   }, []);
 
   const updateImg = (e, index, direction) => {
-    setIsLoaded(false);
     e.preventDefault();
     e.stopPropagation();
-    const newScenes = [...scenes];
-    const len = newScenes[index].images.length;
-    newScenes[index].current = (newScenes[index].current + direction + len) % len;
-    setScenes(newScenes);
+    setScenes(prev => prev.map((scene, i) => {
+      if (i !== index) return scene;
+      const len = scene.images.length;
+      return {
+        ...scene,
+        current: (scene.current + direction + len) % len
+      };
+    }));
   };
 
   return (
@@ -70,18 +72,21 @@ const Gallery = () => {
             >
               <AnimatePresence>
                 <motion.img
-                  key={scene.current}
+                  key={`${i}-${scene.current}`}
                   src={scene.images[scene.current]}
                   onLoad={() => setIsLoaded(true)}
                   loading={i === 0 ? "eager" : "lazy"}
-                  decoding="async"
+                  decoding="sync"
                   fetchpriority={i === 0 ? "high" : "auto"}
-                  initial={{ opacity: 0, filter: 'blur(10px)' }}
-                  animate={{ opacity: 1, filter: 'blur(0px)' }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                  style={{ backgroundColor: '#111' }}
-                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-85 transition-all duration-700"
+                  onError={(e) => {
+                    console.error("img loading error:", scene.images[scene.current]);
+                    e.target.src = ""; 
+                  }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:opacity-85"
                 />
               </AnimatePresence>
 
