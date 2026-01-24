@@ -11,3 +11,15 @@ body {
     overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  scrollbar-width: none;
+}
+
+* {
+  -ms-overflow-style: none;
+}
+

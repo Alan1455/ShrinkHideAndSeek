@@ -54,9 +54,9 @@ const Main = () => {
                         立即下載
                     </Link>
 
-                    <a 
-                        href="https://www.example.com/trailer" 
-                        target="_blank" 
+                    <a
+                        href="#"
+                        target="_blank"
                         rel="noopener noreferrer"
                         className="group flex items-center gap-2 px-10 py-4 bg-white/10 text-white rounded-full font-bold text-lg backdrop-blur-md border border-white/20 hover:bg-white/20 transition-all"
                     >
@@ -67,7 +67,7 @@ const Main = () => {
             </motion.div>
 
             <div className="absolute bottom-10 left-0 w-full z-10 pointer-events-none">
-                <motion.div 
+                <motion.div
                     animate={{ y: [0, 10, 0] }}
                     transition={{ repeat: Infinity, duration: 2 }}
                     className="flex flex-col items-center justify-center gap-2"

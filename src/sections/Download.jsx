@@ -31,7 +31,7 @@ const Download = () => {
                         className="group flex items-center justify-center gap-3 px-12 py-6 bg-white text-black rounded-full font-bold text-xl hover:bg-blue-50 transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
                     >
                         <DownloadIcon size={24} className="group-hover:translate-y-0.5 transition-transform" />
-                        立即下載地圖 (v1.0)
+                        立即下載地圖 (v1.0.0)
                     </a>
 
                     <Link to="/docs" target="_blank" rel="noopener noreferrer"

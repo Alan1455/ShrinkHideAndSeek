@@ -5,8 +5,10 @@ import {
     ArrowLeft, BookOpen, HelpCircle, FileText, Lock, 
     ShieldAlert, ChevronRight, Hash, Zap, 
     Settings, Search, Cpu, Users, Globe, Database, Heart,
-    ShieldCheck, Shield,
+    ShieldCheck, Shield, Home, AlertCircle, Monitor,
+    Server, Sparkles, Layers, ExternalLink
 } from 'lucide-react';
+
 
 const Docs = () => {
     const location = useLocation();
@@ -17,6 +19,12 @@ const Docs = () => {
     };
 
     const menuGroups = [
+        {
+            groupName: "",
+            items: [
+                { path: '/docs', label: '關於我們', icon: Home, hasArrow: false },
+            ]
+        },
         {
             groupName: "快速開始",
             items: [
@@ -71,7 +79,7 @@ const Docs = () => {
 
     return (
         <div className="min-h-screen bg-[#050505] text-gray-200 flex select-none font-sans overflow-hidden">
-            <aside className="w-64 border-r border-white/[0.08] bg-[#080808] hidden md:flex flex-col sticky top-0 h-screen shadow-2xl">
+            <aside className="w-64 border-r border-white/[0.08] bg-[#080808] hidden md:flex flex-col sticky top-0 h-full shadow-2xl">
                 <div className="p-5 space-y-4">
                     <Link to="/" className="flex items-center gap-2.5 px-3 py-2.5 text-white transition-all group">
                         <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform text-blue-400" />
@@ -167,10 +175,23 @@ const Docs = () => {
                             transition={{ duration: 0.2, ease: "easeOut" }}
                         >
                             <Routes location={location}>
+                                {/*
+                                <Route path="download" element={<Placeholder />} />
+                                <Route path="setup-server" element={<Placeholder />} />
+                                <Route path="play" element={<Placeholder />} />
+                                */}
+                                <Route path="server-properties" element={<ServerProperties />} />
+                                {/*
+                                <Route path="server-settings" element={<Placeholder />} />
+                                <Route path="client-settings" element={<Placeholder />} />
+                                */}
+                                <Route path="recommended-mods" element={<RecommendedMods />} />
+                                <Route path="faq" element={<FAQ />} />
+                                <Route path="troubleshoot" element={<Troubleshooting />} />
                                 <Route path="privacy" element={<PrivacyPolicy />} />
                                 <Route path="terms" element={<TermsOfService />} />
                                 <Route path="about" element={<AboutTeam/>} />
-                                <Route index element={<InstallGuide />} />
+                                <Route index element={<Index />} />
                                 <Route path="*" element={<Placeholder />} />
                             </Routes>
                         </motion.div>
@@ -199,8 +220,22 @@ const PageHeader = ({ title, icon: Icon, tag }) => (
 const FAQ = () => {
     const [activeIdx, setActiveIdx] = useState(null);
     const faqs = [
-        { q: "為什麼縮小後會窒息？", a: "請確保方塊判定高度已正確更新，這通常發生在非官方核心的伺服器上。" },
-        { q: "可以自定義縮小倍率嗎？", a: "可以，請在 config.yml 中的 'scaling_factor' 欄位進行修改。" }
+        {
+            q: "遊戲需要特定的 Minecraft 版本嗎?",
+            a: "是的，本作品目前針對 Minecraft 1.20.10 開發。請確保您的伺服器與客戶端版本一致，以避免指令包失效。"
+        },
+        {
+            q: "我有自己的地圖，可以提取 Datapack 去那邊用嗎?",
+            a: "可以，但請務必遵守『使用條款』。您可以將我們的 Datapack 提取至您的地圖中使用，但若要公開發佈，請註明技術來源與作者。"
+        },
+        {
+            q: "支援基岩版(Bedrock)嗎?",
+            a: "很抱歉，本專案目前僅支援 Java 版(Java Edition)，因為核心邏輯大量依賴了 Java 版特有的實體屬性(Attribute)指令。"
+        },
+        {
+            q: "可以在單人世界遊玩嗎?",
+            a: "不推薦。此地圖是鬼抓人，建議 2~3 人以上遊玩。"
+        }
     ];
     return (
         <div className="space-y-8">
@@ -209,13 +244,17 @@ const FAQ = () => {
                 {faqs.map((faq, i) => (
                     <div key={i} className={`border rounded-2xl bg-white/[0.02] overflow-hidden transition-all ${activeIdx === i ? 'border-blue-500/30' : 'border-white/[0.08]'}`}>
                         <button onClick={() => setActiveIdx(activeIdx === i ? null : i)} className="w-full flex items-center justify-between p-6 text-left">
-                            <span className={`font-black ${activeIdx === i ? 'text-blue-400' : 'text-white'}`}>{faq.q}</span>
+                            <span className={`font-black ${activeIdx === i ? 'text-blue-400' : 'text-white'}`}>
+                                {faq.q}
+                            </span>
                             <ChevronRight size={18} className={`transition-transform ${activeIdx === i ? 'rotate-90 text-blue-400' : 'text-gray-500'}`} />
                         </button>
                         <AnimatePresence>
                             {activeIdx === i && (
                                 <motion.div initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0 }} className="overflow-hidden">
-                                    <div className="px-6 pb-6 text-gray-400 border-t border-white/[0.05] pt-5">{faq.a}</div>
+                                    <div className="px-6 pb-6 text-gray-400 border-t border-white/[0.05] pt-5">
+                                        {faq.a}
+                                    </div>
                                 </motion.div>
                             )}
                         </AnimatePresence>
@@ -356,6 +395,7 @@ const AboutTeam = () => {
     const team = [
         {
             name: "Alan",
+            avatar: new URL('../assets/alan.webp', import.meta.url).href,
             roles: ["場景建築師", "關卡設計", "核心邏輯開發", "指令包編寫", "網頁開發"],
             color: "from-pink-500/20 to-pink-500/5",
             glow: "group-hover:shadow-[0_0_30px_rgba(236,72,153,0.15)]",
@@ -366,16 +406,18 @@ const AboutTeam = () => {
         },
         {
             name: "fm487",
+            avatar: new URL('../assets/fm487.webp', import.meta.url).href,
             roles: ["核心邏輯開發", "指令包編寫", "音效與材質設計"],
             color: "from-red-500/20 to-red-500/5",
             glow: "group-hover:shadow-[0_0_30px_rgba(239,68,68,0.15)]",
             border: "border-red-500/30",
             text: "text-red-400",
-            tags: ["Audio", "Commands", "VFX"],
+            tags: ["Audio", "Commands", "Texture pack"],
             desc: "專注於技術細節與感官回饋，透過精密的指令編寫與材質包定義，賦予地圖獨特的打擊感與沉浸式音效。"
         },
         {
             name: "Arctic_Peng",
+            avatar: new URL('../assets/Arctic_Peng.webp', import.meta.url).href,
             roles: ["專案發起人", "場景建築師", "關卡設計", "靈感啟發"],
             color: "from-cyan-500/20 to-cyan-500/5",
             glow: "group-hover:shadow-[0_0_30px_rgba(6,182,212,0.15)]",
@@ -398,7 +440,18 @@ const AboutTeam = () => {
                         <div className="relative z-10 flex flex-col md:flex-row gap-10">
                             <div className="flex flex-col items-center shrink-0 space-y-4">
                                 <div className="w-32 h-32 bg-black/40 rounded-3xl border border-white/10 flex items-center justify-center overflow-hidden shadow-inner group-hover:border-white/20 transition-all">
-                                    <Users size={56} className={`${member.text} opacity-80 group-hover:scale-110 transition-transform duration-500`} />
+                                    <Users
+                                        size={56}
+                                        className={`absolute ${member.text} opacity-80 group-hover:scale-110 transition-transform duration-500`}
+                                    />
+                                    {member.avatar && (
+                                        <img
+                                            src={member.avatar}
+                                            alt={member.name}
+                                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 relative z-10"
+                                            onError={(e) => { e.currentTarget.style.opacity = '0'; }}
+                                        />
+                                    )}
                                 </div>
                                 <div className="flex flex-col gap-1.5 w-full">
                                     {member.tags.map(tag => (
@@ -454,9 +507,378 @@ const AboutTeam = () => {
     );
 };
 
-const InstallGuide = () => <PageHeader title="安裝指南" icon={Zap} tag="Deployment" />;
-const Troubleshoot = () => <PageHeader title="故障排除" icon={ShieldAlert} tag="Emergency" />;
-const DownloadPage = () => <PageHeader title="下載中心" icon={Database} tag="Assets" />;
+const Index = () => {
+    const categories = [
+        {
+            title: "開始遊玩",
+            links: [
+                { name: "安裝指南", path: "/docs/download", icon: <Zap size={16} />, desc: "地圖與材質包部署教學" },
+                { name: "常見問題", path: "/docs/faq", icon: <HelpCircle size={16} />, desc: "解決遊戲中的各種疑問" }
+            ],
+            color: "text-blue-400"
+        },
+        {
+            title: "法律與規範",
+            links: [
+                { name: "使用條款", path: "/docs/terms", icon: <FileText size={16} />, desc: "地圖使用限制與授權" },
+                { name: "隱私政策", path: "/docs/privacy", icon: <Shield size={16} />, desc: "我們如何處理您的資訊" }
+            ],
+            color: "text-purple-400"
+        },
+        {
+            title: "關於團隊",
+            links: [
+                { name: "製作人員", path: "/docs/about", icon: <Users size={16} />, desc: "了解縮小鬼抓人的創作者" }
+            ],
+            color: "text-emerald-400"
+        }
+    ];
+    return (
+        <div className="space-y-12 pb-20">
+            <div className="relative p-8 rounded-[3rem] bg-gradient-to-br from-white/[0.03] to-transparent border border-white/10 overflow-hidden">
+                <div className="relative z-10">
+                    <h1 className="text-4xl font-black text-white mb-4 tracking-tighter">官方文檔中心</h1>
+                    <p className="text-gray-400 max-w-lg leading-relaxed mb-6 font-medium">
+                        歡迎來到《縮小鬼抓人》官方說明手冊。在這裡您可以找到從安裝、遊玩到開發的所有細節。
+                    </p>
+                </div>
+                <BookOpen size={180} className="absolute -right-8 -bottom-8 text-white/80 -rotate-12" />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                {categories.map((cat, idx) => (
+                    <div key={idx} className="space-y-5">
+                        <h3 className={`text-xs font-black uppercase tracking-[0.2em] ml-2 ${cat.color}`}>
+                            {cat.title}
+                        </h3>
+                        <div className="grid gap-4">
+                            {cat.links.map((link, lIdx) => (
+                                <Link 
+                                    key={lIdx} 
+                                    to={link.path}
+                                    className="group p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all flex items-center justify-between"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <div className={`p-2.5 rounded-xl bg-white/5 group-hover:scale-110 transition-transform ${cat.color}`}>
+                                            {link.icon}
+                                        </div>
+                                        <div>
+                                            <h4 className="text-white font-bold text-sm">{link.name}</h4>
+                                            <p className="text-gray-500 text-[11px] mt-0.5">{link.desc}</p>
+                                        </div>
+                                    </div>
+                                    <ChevronRight size={14} className="text-gray-600 group-hover:text-white group-hover:translate-x-1 transition-all" />
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <div className="text-center py-10">
+                <p className="text-[11px] text-gray-600 font-mono tracking-widest">
+                    © 2026 <span className="text-yellow-400">Alan</span>. All right reserved.
+                </p>
+            </div>
+        </div>
+    );
+};
+
+const Troubleshooting = () => {
+    const issues = [
+        {
+            q: "無法開啟伺服器?",
+            a: "請確認伺服器核心版本為`Vanilla/Fabric 1.21.10`。若發生崩潰，請檢查 logs 資料夾中的最新日誌，並將錯誤代碼貼給 Gemini 分析。",
+            tag: "Critical / Server"
+        },
+        {
+            q: "地圖內指令方塊失效?",
+            a: "請確認伺服器設定中`enable-command-block=true`已開啟。若部分功能卡死，請嘗試輸入 `/reload` 來重置指令包。",
+            tag: "Logic / Admin"
+        },
+        {
+            q: "玩家遊玩中有任何錯誤",
+            a: "請在伺服器後台執行`op <user>`。若點擊告示牌沒反應，請確認是否已正確載入 Datapack。",
+            tag: "Permission / Map"
+        }
+    ];
+    return (
+        <div className="space-y-12 pb-20">
+            <PageHeader title="故障排除" icon={AlertCircle} tag="Troubleshoot" />
+            <div className="grid gap-6">
+                {issues.map((item, idx) => (
+                    <div key={idx} className="group p-8 rounded-[2rem] bg-white/[0.02] border border-white/10 hover:border-red-500/30 transition-all duration-500">
+                        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+                            <div className="flex items-center gap-3">
+                                <span className="px-2 py-0.5 rounded bg-red-500/10 text-red-400 text-[10px] font-bold uppercase tracking-widest border border-red-500/20">
+                                    Issue {idx + 1}
+                                </span>
+                                <span className="text-white/30 font-mono text-xs">{item.tag}</span>
+                            </div>
+                        </div>
+                        <h3 className="text-xl font-bold text-white mb-4 flex items-start gap-3">
+                            <HelpCircle size={20} className="text-blue-500 mt-1 shrink-0" />
+                            {item.q}
+                        </h3>
+                        <div className="pl-8 border-l-2 border-white/5 ml-2.5">
+                            <p className="text-gray-400 leading-relaxed text-sm">
+                                {item.a.split(/(`[^`]+`)/g).map((part, i) => 
+                                    part.startsWith('`') && part.endsWith('`') ? (
+                                        <code key={i} className="px-1.5 py-0.5 rounded bg-white/10 text-blue-300 font-mono text-[13px] border border-white/10 mx-1 select-text">
+                                            {part.slice(1, -1)}
+                                        </code>
+                                    ) : part
+                                )}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+            <div className="p-10 rounded-[2.5rem] bg-gradient-to-r from-blue-600/10 to-transparent border border-blue-500/20 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="space-y-2">
+                    <h4 className="text-xl font-bold text-white">仍需要幫助？</h4>
+                    <p className="text-gray-400 text-sm">加入我們的 Discord 社群，將會有技術人員協助您。</p>
+                </div>
+                <a href="#" className="px-8 py-3 rounded-2xl bg-blue-600 text-white font-bold text-sm hover:bg-blue-500 transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)]">
+                    聯絡技術支援
+                </a>
+            </div>
+        </div>
+    );
+};
+
+const RecommendedMods = () => {
+    const modSections = [
+        {
+            title: "客戶端模組",
+            icon: Monitor,
+            tag: "優化玩家端 FPS",
+            color: "blue",
+            items: [
+                { name: "Fabric api", desc: "必裝。所有模組的前置。", link: "https://modrinth.com/mod/fabric-api/version/0.138.4+1.21.10", essential: true },
+                { name: "Sodium", desc: "必裝。大幅提升 FPS 的核心模組，修復渲染卡頓。", link: "https://modrinth.com/mod/sodium/version/mc1.21.10-0.7.3-fabric", essential: true },
+                { name: "Entity Culling", desc: "隱藏視線外實體。在地圖有多位玩家縮小時，能顯著優化效能。", link: "https://modrinth.com/mod/entityculling/version/zwBaFdjH", essential: false },
+                { name: "Lithium", desc: "優化遊戲物理與 AI 運算，穩定 `Tick` 速率。", link: "https://modrinth.com/mod/lithium/version/mc1.21.10-0.20.1-fabric", essential: false }
+            ]
+        },
+        {
+            title: "伺服器端模組",
+            icon: Server,
+            tag: "穩定伺服器運算",
+            color: "emerald",
+            items: [
+                { name: "Fabric api", desc: "必裝。所有模組的前置。", link: "https://modrinth.com/mod/fabric-api/version/0.138.4+1.21.10", essential: true },
+                { name: "FerriteCore", desc: "減少記憶體佔用。對於小容量伺服器 (`2G-4G`) 尤為重要。", link: "https://modrinth.com/mod/ferrite-core/version/8.0.2-fabric", essential: false },
+                { name: "No Chat Reports", desc: "移除聊天報告系統，保護玩家隱私並維持對話體驗。", link: "https://modrinth.com/mod/no-chat-reports/version/Fabric-1.21.10-v2.16.0", essential: false }
+            ]
+        },
+        {
+            title: "光影",
+            icon: Sparkles,
+            tag: "極致視覺體驗",
+            color: "purple",
+            items: [
+                { name: "Iris Shaders", desc: "使遊戲支援 `Shaders`。效能優於傳統 OptiFine。", link: "https://modrinth.com/mod/iris/version/1.9.7+1.21.10-fabric", essential: false },
+                { name: "Complementary", desc: "推薦光影。在《縮小鬼抓人》中擁有極佳的方塊細節與色彩表現。", link: "https://modrinth.com/shader/complementary-reimagined/version/r5.6.1", essential: false }
+            ]
+        }
+    ];
+    const parseText = (text) => {
+        return text.split(/(`[^`]+`)/g).map((part, i) => 
+            part.startsWith('`') && part.endsWith('`') ? (
+                <code key={i} className="px-1.5 py-0.5 rounded bg-white/10 text-blue-300 font-mono text-[12px] border border-white/10 mx-1">
+                    {part.slice(1, -1)}
+                </code>
+            ) : part
+        );
+    };
+    return (
+        <div className="space-y-20 pb-20 animate-in fade-in duration-700">
+            <PageHeader title="推薦模組" icon={Layers} tag="Performance" />
+            <div className="p-8 rounded-[2.5rem] bg-amber-500/[0.03] border border-amber-500/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden group">
+                <div className="absolute -left-10 -top-10 w-32 h-32 bg-amber-500/5 blur-[50px] rounded-full" />
+                <div className="flex items-center gap-5 relative z-10">
+                    <div className="space-y-1">
+                        <h4 className="text-white font-bold text-lg tracking-tight">版本相容性警告</h4>
+                        <p className="text-gray-400 text-sm font-medium leading-relaxed">
+                            所有模組均應嚴格使用 <a href="https://fabricmc.net/use/installer/" target="_blank" className="text-amber-400 font-mono bg-amber-400/10 px-1.5 py-0.5 rounded border border-amber-400/20 mx-1">Fabric 1.21.10</a> 版本。
+                            使用不支援的版本可能導致地圖機制完全失效或崩潰。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            {modSections.map((section, sIdx) => (
+                <div key={sIdx} className="space-y-8">
+                    <div className="flex items-center gap-4">
+                        <div className={`p-2 rounded-xl bg-${section.color}-500/10 border border-${section.color}-500/20 text-${section.color}-500`}>
+                            <section.icon size={20} />
+                        </div>
+                        <div>
+                            <h2 className="text-2xl font-black text-white tracking-tight uppercase">{section.title}</h2>
+                            <p className="text-[11px] font-mono text-white/40 tracking-[0.2em] uppercase">{section.tag}</p>
+                        </div>
+                        <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {section.items.map((mod, mIdx) => (
+                            <div key={mIdx} className="group relative p-8 rounded-[2.5rem] bg-white/[0.02] border border-white/5 hover:border-white/10 transition-all flex flex-col justify-between overflow-hidden">
+                                <div>
+                                    <div className="flex justify-between items-start mb-4">
+                                        <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors tracking-tight">
+                                            {mod.name}
+                                        </h3>
+                                        {mod.essential && (
+                                            <span className="text-[9px] font-black text-emerald-500 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">
+                                                ESSENTIAL
+                                            </span>
+                                        )}
+                                    </div>
+                                    <p className="text-gray-500 text-sm leading-relaxed mb-8">
+                                        {parseText(mod.desc)}
+                                    </p>
+                                </div>
+                                <a 
+                                    href={mod.link} 
+                                    target="_blank" 
+                                    rel="noreferrer"
+                                    className="flex items-center justify-center gap-2 w-full py-3 rounded-2xl bg-white/5 border border-white/10 text-white/50 text-[11px] font-black uppercase tracking-[0.2em] hover:text-white/80 transition-all group/btn"
+                                >
+                                    Download <ExternalLink size={12} className="group-hover/btn:translate-x-0.5 transition-transform" />
+                                </a>
+                                <div className={`absolute bottom-0 left-0 h-1 w-0 bg-${section.color}-500/50 group-hover:w-full transition-all duration-500`} />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            ))}
+        </div>
+    );
+};
+
+const ServerProperties = () => {
+    const rawConfig = `accepts-transfers=false
+allow-flight=true
+allow-nether=false
+broadcast-console-to-ops=true
+broadcast-rcon-to-ops=true
+bug-report-link=
+debug=false
+difficulty=easy
+enable-code-of-conduct=false
+enable-command-block=true
+enable-jmx-monitoring=false
+enable-query=true
+enable-rcon=false
+enable-status=true
+enforce-secure-profile=false
+enforce-whitelist=false
+entity-broadcast-range-percentage=100
+force-gamemode=false
+function-permission-level=2
+gamemode=adventure
+generate-structures=true
+generator-settings={}
+hardcore=false
+hide-online-players=false
+initial-disabled-packs=
+initial-enabled-packs=vanilla
+level-name=world
+level-seed=
+level-type=default
+log-ips=true
+max-build-height=256
+max-chained-neighbor-updates=1000000
+max-players=87
+max-tick-time=60000
+max-world-size=29999984
+motd=§c§l§o§k3§e§l§o縮小鬼抓人§c§l§o§k3
+network-compression-threshold=256
+online-mode=true
+op-permission-level=4
+pause-when-empty-seconds=60
+player-idle-timeout=0
+prevent-proxy-connections=false
+pvp=true
+query.port=25565
+rate-limit=0
+rcon.password=
+rcon.port=25575
+region-file-compression=deflate
+require-resource-pack=false
+resource-pack=
+resource-pack-id=
+resource-pack-prompt=
+resource-pack-sha1=
+server-ip=
+server-port=25565
+simulation-distance=10
+snooper-enabled=true
+spawn-animals=true
+spawn-monsters=true
+spawn-npcs=true
+spawn-protection=0
+status-heartbeat-interval=0
+sync-chunk-writes=true
+text-filtering-config=
+text-filtering-version=0
+use-native-transport=true
+view-distance=10
+white-list=false`;
+    const highlights = [
+        { key: "enable-command-block=true", desc: "核心關鍵：必須開啟，否則縮小邏輯無法運作。" },
+        { key: "gamemode=adventure", desc: "推薦模式：冒險模式可防止玩家破壞場景。" },
+        { key: "allow-flight=true", desc: "防止誤判：縮小移動有時會被系統判定為飛行。" },
+        { key: "level-name=world", desc: "存檔名稱：確保與下載的地圖資料夾名稱一致。" }
+    ];
+    return (
+        <div className="space-y-8">
+            <PageHeader title="伺服器配置" icon={Settings} tag="server.properties" />
+            <div className="flex-grow grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="lg:col-span-2 relative group h-[590px] flex flex-col">
+                    <div className="absolute -inset-0.5 bg-gradient-to-b from-blue-500/20 to-purple-500/20 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000"></div>
+                    <div className="relative bg-[#0d0d0d] border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+                        <div className="flex items-center justify-between px-4 py-3 border-b border-white/5 bg-white/5">
+                            <div className="flex gap-1.5">
+                                <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/40" />
+                                <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/40" />
+                                <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/40" />
+                            </div>
+                            <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Config Editor</span>
+                        </div>
+                        <div className="flex-grow p-6 pb-16 font-mono text-sm leading-relaxed overflow-x-auto custom-scroll h-full overflow-y-auto select-text">
+                            {rawConfig.split('\n').map((line, i) => (
+                                <div key={i} className="flex gap-4 group/line">
+                                    <span className="shrink-0 w-6 text-right text-white/20 select-none">{i + 1}</span>
+                                    <span className="text-white/70">
+                                        {line.split('=')[0]}
+                                        <span className="text-white/30">=</span>
+                                        <span className={`${line.includes('true') ? 'text-green-400' : line.includes('false') ? 'text-red-400' : 'text-gray-400'}`}>{line.split('=')[1]}</span>
+                                    </span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                <div className="space-y-4">
+                    <h3 className="text-xs font-black text-blue-500 uppercase tracking-widest ml-1">重要設定說明</h3>
+                    {highlights.map((item, i) => (
+                        <div key={i} className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-blue-500/30 transition-all">
+                            <code className="text-[14px] text-blue-300 font-bold block mb-1">{item.key}</code>
+                            <p className="text-[13px] text-gray-500 leading-relaxed">{item.desc}</p>
+                        </div>
+                    ))}
+                    <div className="mt-6 p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20">
+                        <div className="flex items-center gap-2 text-amber-400 mb-2 text-xs font-bold">
+                            <AlertCircle size={14} /> 注意事項
+                        </div>
+                        <p className="text-[11px] text-gray-500">
+                            修改此檔案後，必須重啟伺服器才能生效。建議在修改前先備份原始檔案。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const Placeholder = () => <div className="text-gray-500 py-20 text-center font-mono">此頁面內容正在編寫中...</div>;
 
 export default Docs;
