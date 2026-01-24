@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link, Routes, Route, useLocation } from 'react-router-dom';
 import { 
@@ -44,7 +44,6 @@ const Docs = () => {
             groupName: "遊戲設定",
             items: [
                 { path: '/docs/server-properties', label: 'server.properties', icon: Settings, hasArrow: false },
-                { path: '/docs/server-settings', label: '伺服器設定', icon: Database, hasArrow: false },
                 { path: '/docs/client-settings', label: '客戶端設定', icon: Globe, hasArrow: false },
                 { path: '/docs/recommended-mods', label: '推薦模組', icon: Cpu, hasArrow: false },
             ]
@@ -76,6 +75,22 @@ const Docs = () => {
             )
         })).filter(group => group.items.length > 0);
     }, [searchQuery]);
+
+    useEffect(() => {
+        filteredGroups.forEach(group => {
+            group.items.forEach(item => {
+                if (item.isDropdown && item.children) {
+                    const hasActiveChild = item.children.some(child => child.path === location.pathname);
+                    if (hasActiveChild) {
+                        setOpenMenus(prev => ({
+                            ...prev,
+                            [item.label]: true
+                        }));
+                    }
+                }
+            });
+        });
+    }, [location.pathname, filteredGroups]);
 
     return (
         <div className="min-h-screen bg-[#050505] text-gray-200 flex select-none font-sans overflow-hidden">
@@ -182,7 +197,6 @@ const Docs = () => {
                                 */}
                                 <Route path="server-properties" element={<ServerProperties />} />
                                 {/*
-                                <Route path="server-settings" element={<Placeholder />} />
                                 <Route path="client-settings" element={<Placeholder />} />
                                 */}
                                 <Route path="recommended-mods" element={<RecommendedMods />} />
@@ -693,6 +707,15 @@ const RecommendedMods = () => {
     return (
         <div className="space-y-20 pb-20 animate-in fade-in duration-700">
             <PageHeader title="推薦模組" icon={Layers} tag="Performance" />
+            <div className="flex flex-col items-center justify-center space-y-4 text-center">
+                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400">
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                    <span className="text-[12px] font-black uppercase tracking-widest">Optional Optimization</span>
+                </div>
+                <p className="text-gray-400 text-lg font-medium">
+                    本地圖 <span className="text-white font-bold underline underline-offset-4 decoration-blue-500/50">不需要</span> 模組即可運作，以下建議僅為優化遊戲體驗與效能。
+                </p>
+            </div>
             <div className="p-8 rounded-[2.5rem] bg-amber-500/[0.03] border border-amber-500/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden group">
                 <div className="absolute -left-10 -top-10 w-32 h-32 bg-amber-500/5 blur-[50px] rounded-full" />
                 <div className="flex items-center gap-5 relative z-10">
