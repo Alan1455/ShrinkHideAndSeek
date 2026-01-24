@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-scroll';
 import { Link as RouterLink } from 'react-router-dom';
-import { Users, MessageCircle, Cpu, ExternalLink, ShieldCheck, FileText, Heart } from 'lucide-react';
+import { Users, MessageCircle, Cpu, ExternalLink, ShieldCheck, FileText, Heart, ArrowRight } from 'lucide-react';
 
 
 const Footer = () => {
@@ -100,11 +100,11 @@ const Footer = () => {
                                     <p className="text-[10px] text-gray-300 uppercase tracking-widest mb-1 font-bold">Minecraft 版本</p>
                                     <p className="text-sm text-white font-mono px-2 py-0.5">1.21.10</p>
                                 </div>
-                                <div>
-                                    <p className="text-[10px] text-gray-300 uppercase tracking-widest mb-1 font-bold">推薦光影</p>
-                                    <a href="https://modrinth.com/shader/complementary-reimagined/version/r5.6.1" target="_blank" className="text-sm text-white hover:text-purple-400 transition-colors underline decoration-purple-500/30 underline-offset-4 font-medium">
-                                        Complementary Reimagined
-                                    </a>
+                                <div className="pt-2">
+                                    <RouterLink to="/docs" target="_blank" className="group/doc inline-flex items-center gap-3 px-5 py-3 rounded-2xl bg-purple-600/10 border border-purple-500/20 text-purple-300 hover:bg-purple-600/20 transition-all w-full justify-center">
+                                        <span className="font-black text-sm tracking-widest uppercase">進入官方文檔</span>
+                                        <ArrowRight size={16} className="group-hover/doc:translate-x-1 transition-transform" />
+                                    </RouterLink>
                                 </div>
                             </div>
                         </div>
