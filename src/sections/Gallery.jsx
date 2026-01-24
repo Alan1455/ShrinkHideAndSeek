@@ -14,6 +14,18 @@ import img9 from '../assets/9.webp';
 import img10 from '../assets/10.webp';
 import img11 from '../assets/11.webp';
 import img12 from '../assets/12.webp';
+import img13 from '../assets/13.webp';
+import img14 from '../assets/14.webp';
+import img15 from '../assets/15.webp';
+import img16 from '../assets/16.webp';
+import img17 from '../assets/17.webp';
+import img18 from '../assets/18.webp';
+import img19 from '../assets/19.webp';
+import img20 from '../assets/20.webp';
+import img21 from '../assets/21.webp';
+import img22 from '../assets/22.webp';
+import img23 from '../assets/23.webp';
+import img24 from '../assets/24.webp';
 
 
 const Gallery = () => {
@@ -21,9 +33,9 @@ const Gallery = () => {
     { title: "林中小屋", images: [img1, img2, img3, img4], current: 0 },
     { title: "沙漠遺跡", images: [img5, img6, img7, img8], current: 0 },
     { title: "勇者與魔王", images: [img9, img10, img11, img12], current: 0 },
-    { title: "todo1", images: [img1], current: 0 },
-    { title: "todo2", images: [img1], current: 0 },
-    { title: "todo3", images: [img1], current: 0 }
+    { title: "廢棄礦坑", images: [img13, img14, img15, img16], current: 0 },
+    { title: "天空遺島", images: [img17, img18, img19, img20], current: 0 },
+    { title: "雪原觀測站", images: [img21, img22, img23, img24], current: 0 }
   ]);
 
   useEffect(() => {
