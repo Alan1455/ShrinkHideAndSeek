@@ -10,6 +10,35 @@ import {
 } from 'lucide-react';
 
 
+const MobileOverlay = () => {
+    return (
+        <div className="fixed inset-0 z-[100] flex md:hidden flex-col items-center justify-center bg-[#080808] p-8 text-center">
+            <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute -top-24 -left-24 w-64 h-64 bg-blue-500/10 blur-[100px] rounded-full" />
+                <div className="absolute -bottom-24 -right-24 w-64 h-64 bg-purple-500/10 blur-[100px] rounded-full" />
+            </div>
+            <div className="relative z-10 space-y-6">
+                <div className="inline-flex p-4 bg-white/5 rounded-3xl border border-white/10 shadow-2xl">
+                    <Monitor size={48} className="text-blue-400" />
+                </div>
+                <div className="space-y-2">
+                    <h2 className="text-2xl font-black text-white tracking-tight">請使用電腦瀏覽</h2>
+                    <p className="text-gray-400 text-sm leading-relaxed max-w-[240px] mx-auto">
+                        為了獲得最佳的閱讀體驗與代碼複製功能，文檔頁面僅支援電腦端設備訪問。
+                    </p>
+                </div>
+                <Link 
+                    to="/" 
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-xl text-sm font-bold transition-all"
+                >
+                    <ArrowLeft size={16} /> 返回首頁
+                </Link>
+            </div>
+        </div>
+    );
+};
+
+
 const Docs = () => {
     const location = useLocation();
     const [searchQuery, setSearchQuery] = useState("");
@@ -94,6 +123,7 @@ const Docs = () => {
 
     return (
         <div className="min-h-screen bg-[#050505] text-gray-200 flex select-none font-sans overflow-hidden">
+            <MobileOverlay />
             <aside className="w-64 border-r border-white/[0.08] bg-[#080808] hidden md:flex flex-col sticky top-0 h-full shadow-2xl">
                 <div className="p-5 space-y-4">
                     <Link to="/" className="flex items-center gap-2.5 px-3 py-2.5 text-white transition-all group">
@@ -179,9 +209,9 @@ const Docs = () => {
                     ))}
                 </nav>
             </aside>
-            <main className="flex-1 overflow-y-auto relative bg-[#050505]">
-                <div className="max-w-4xl mx-auto py-16 px-8 md:px-16">
-                    <AnimatePresence mode="popLayout">
+            <main className="flex-1 overflow-y-auto relative bg-[#050505] hidden md:flex">
+                <div className="w-full max-w-4xl mx-auto py-16 px-8 md:px-16">
+                    <AnimatePresence mode="wait">
                         <motion.div
                             key={location.pathname}
                             initial={{ opacity: 0, y: 10 }}
@@ -205,6 +235,9 @@ const Docs = () => {
                                 <Route path="privacy" element={<PrivacyPolicy />} />
                                 <Route path="terms" element={<TermsOfService />} />
                                 <Route path="about" element={<AboutTeam/>} />
+                                {/*
+                                <Route path="donate" element={<Placeholder />} />
+                                */}
                                 <Route index element={<Index />} />
                                 <Route path="*" element={<Placeholder />} />
                             </Routes>
@@ -252,12 +285,12 @@ const FAQ = () => {
         }
     ];
     return (
-        <div className="space-y-8">
+        <div className="space-y-8 w-full">
             <PageHeader title="常見問題" icon={HelpCircle} tag="Support" />
-            <div className="space-y-4">
+            <div className="space-y-4 w-full">
                 {faqs.map((faq, i) => (
-                    <div key={i} className={`border rounded-2xl bg-white/[0.02] overflow-hidden transition-all ${activeIdx === i ? 'border-blue-500/30' : 'border-white/[0.08]'}`}>
-                        <button onClick={() => setActiveIdx(activeIdx === i ? null : i)} className="w-full flex items-center justify-between p-6 text-left">
+                    <div key={i} className={`w-full border rounded-2xl bg-white/[0.02] overflow-hidden transition-all ${activeIdx === i ? 'border-blue-500/30' : 'border-white/[0.08]'}`}>
+                        <button onClick={() => setActiveIdx(activeIdx === i ? null : i)} className="w-full flex items-stretch justify-between p-6 text-left">
                             <span className={`font-black ${activeIdx === i ? 'text-blue-400' : 'text-white'}`}>
                                 {faq.q}
                             </span>
@@ -416,6 +449,7 @@ const AboutTeam = () => {
             border: "border-pink-500/30",
             text: "text-pink-400",
             tags: ["Full-Stack", "Datapack", "World Build", "Website"],
+            quote: "oi oi oi a eye eye",
             desc: "專案的技術支柱，負責從底層指令架構到前端網頁展示的全方位整合，將複雜的縮小機制轉化為流暢的遊戲體驗。"
         },
         {
@@ -427,6 +461,7 @@ const AboutTeam = () => {
             border: "border-red-500/30",
             text: "text-red-400",
             tags: ["Audio", "Commands", "Texture pack"],
+            quote: "蛤",
             desc: "專注於技術細節，透過精密的指令編寫與材質包製作，賦予地圖獨特的沉浸式。"
         },
         {
@@ -438,6 +473,7 @@ const AboutTeam = () => {
             border: "border-cyan-500/30",
             text: "text-cyan-400",
             tags: ["Creative", "Founder", "World Build"],
+            quote: "你們是給炮吧",
             desc: "作品的靈魂人物與構思者，不僅定義了遊戲的核心玩法，更在場景構築中融入了無數創意點子與關卡巧思。"
         }
     ];
@@ -491,6 +527,12 @@ const AboutTeam = () => {
                                             </span>
                                         ))}
                                     </div>
+                                </div>
+                                <div className="relative group/quote">
+                                    <div className={`absolute -left-2 -top-2 text-2xl ${member.text} opacity-20 font-serif`}>"</div>
+                                    <p className={`pl-4 py-1 text-sm font-medium ${member.text} opacity-80 ${member.border}`}>
+                                        {member.quote}
+                                    </p>
                                 </div>
                                 <div className="relative">
                                     <p className="text-gray-300 text-base leading-[1.8] font-medium max-w-2xl relative z-10">
@@ -712,8 +754,15 @@ const RecommendedMods = () => {
                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
                     <span className="text-[12px] font-black uppercase tracking-widest">Optional Optimization</span>
                 </div>
-                <p className="text-gray-400 text-lg font-medium">
-                    本地圖 <span className="text-white font-bold underline underline-offset-4 decoration-blue-500/50">不需要</span> 模組即可運作，以下建議僅為優化遊戲體驗與效能。
+                <p className="text-gray-300 text-2xl font-semibold leading-relaxed">
+                    本地圖
+                    <span className="relative mx-3">
+                        <span className="absolute inset-0 blur-lg bg-cyan-500/40 -z-10 px-4"></span>
+                        <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-emerald-400 bg-clip-text text-transparent font-black text-3xl tracking-wider drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">
+                            不需要
+                        </span>
+                    </span>
+                    模組即可運作，以下建議僅為優化遊戲體驗與效能。
                 </p>
             </div>
             <div className="p-8 rounded-[2.5rem] bg-amber-500/[0.03] border border-amber-500/20 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 relative overflow-hidden group">
