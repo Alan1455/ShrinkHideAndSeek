@@ -401,7 +401,7 @@ const AboutTeam = () => {
             glow: "group-hover:shadow-[0_0_30px_rgba(236,72,153,0.15)]",
             border: "border-pink-500/30",
             text: "text-pink-400",
-            tags: ["Full-Stack", "Datapack", "Logic"],
+            tags: ["Full-Stack", "Datapack", "World Build", "Website"],
             desc: "專案的技術支柱，負責從底層指令架構到前端網頁展示的全方位整合，將複雜的縮小機制轉化為流暢的遊戲體驗。"
         },
         {
@@ -413,7 +413,7 @@ const AboutTeam = () => {
             border: "border-red-500/30",
             text: "text-red-400",
             tags: ["Audio", "Commands", "Texture pack"],
-            desc: "專注於技術細節與感官回饋，透過精密的指令編寫與材質包定義，賦予地圖獨特的打擊感與沉浸式音效。"
+            desc: "專注於技術細節，透過精密的指令編寫與材質包製作，賦予地圖獨特的沉浸式。"
         },
         {
             name: "Arctic_Peng",
@@ -455,7 +455,7 @@ const AboutTeam = () => {
                                 </div>
                                 <div className="flex flex-col gap-1.5 w-full">
                                     {member.tags.map(tag => (
-                                        <span key={tag} className="text-center px-3 py-1 bg-black/40 rounded-lg text-[9px] font-mono text-gray-400 border border-white/5 uppercase tracking-widest">
+                                        <span key={tag} className="text-center px-3 py-1 bg-black/40 rounded-lg text-[9px] font-mono text-gray-400 border border-white/5 tracking-widest">
                                             {tag}
                                         </span>
                                     ))}
@@ -547,23 +547,23 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 {categories.map((cat, idx) => (
                     <div key={idx} className="space-y-5">
-                        <h3 className={`text-xs font-black uppercase tracking-[0.2em] ml-2 ${cat.color}`}>
+                        <h3 className={`text-lg font-black uppercase tracking-[0.2em] ml-2 ${cat.color}`}>
                             {cat.title}
                         </h3>
                         <div className="grid gap-4">
                             {cat.links.map((link, lIdx) => (
-                                <Link 
-                                    key={lIdx} 
+                                <Link
+                                    key={lIdx}
                                     to={link.path}
-                                    className="group p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/10 hover:bg-white/[0.04] transition-all flex items-center justify-between"
+                                    className="group p-5 rounded-2xl bg-white/[0.02] border border-white/5 hover:border-white/20 hover:bg-white/[0.04] transition-all flex items-center justify-between"
                                 >
                                     <div className="flex items-center gap-4">
                                         <div className={`p-2.5 rounded-xl bg-white/5 group-hover:scale-110 transition-transform ${cat.color}`}>
                                             {link.icon}
                                         </div>
                                         <div>
-                                            <h4 className="text-white font-bold text-sm">{link.name}</h4>
-                                            <p className="text-gray-500 text-[11px] mt-0.5">{link.desc}</p>
+                                            <h4 className="text-white font-bold text-lg">{link.name}</h4>
+                                            <p className="text-gray-400 text-[14px] mt-0.5">{link.desc}</p>
                                         </div>
                                     </div>
                                     <ChevronRight size={14} className="text-gray-600 group-hover:text-white group-hover:translate-x-1 transition-all" />
@@ -843,7 +843,7 @@ white-list=false`;
                             </div>
                             <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest">Config Editor</span>
                         </div>
-                        <div className="flex-grow p-6 pb-16 font-mono text-sm leading-relaxed overflow-x-auto custom-scroll h-full overflow-y-auto select-text">
+                        <div className="flex-grow p-2 pb-12 font-mono text-sm leading-relaxed overflow-x-auto custom-scroll h-full overflow-y-auto select-text">
                             {rawConfig.split('\n').map((line, i) => (
                                 <div key={i} className="flex gap-4 group/line">
                                     <span className="shrink-0 w-6 text-right text-white/20 select-none">{i + 1}</span>
@@ -860,7 +860,7 @@ white-list=false`;
                 <div className="space-y-4">
                     <h3 className="text-xs font-black text-blue-500 uppercase tracking-widest ml-1">重要設定說明</h3>
                     {highlights.map((item, i) => (
-                        <div key={i} className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-blue-500/30 transition-all">
+                        <div key={i} className="p-4 rounded-2xl bg-white/[0.03] border border-white/5 hover:border-blue-500/40 transition-all">
                             <code className="text-[14px] text-blue-300 font-bold block mb-1">{item.key}</code>
                             <p className="text-[13px] text-gray-500 leading-relaxed">{item.desc}</p>
                         </div>
