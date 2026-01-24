@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
-  "homepage": "https://Alan1455.github.io/ShrinkHideAndSeek",
+  "homepage": "https://Alan1455.github.io/ShrinkTag",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
