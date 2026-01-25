@@ -150,9 +150,9 @@ const Footer = () => {
                         <RouterLink to="/docs/terms" target="_blank" className="text-xs text-gray-300 hover:text-white transition-colors flex items-center gap-2 font-medium">
                             <FileText size={14} /> 使用條款
                         </RouterLink>
-                        <a href="#" target="_blank" className="group text-xs text-amber-400 hover:text-amber-300 transition-all flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20 font-bold">
+                        <RouterLink to="/docs/donate" target="_blank" className="group text-xs text-amber-400 hover:text-amber-300 transition-all flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 hover:bg-amber-500/20 font-bold">
                             <Heart size={14} className="group-hover:scale-110 transition-transform" fill="currentColor" /> 贊助我們
-                        </a>
+                        </RouterLink>
                     </div>
                 </div>
             </div>
