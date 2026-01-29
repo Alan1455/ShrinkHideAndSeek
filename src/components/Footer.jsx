@@ -77,11 +77,11 @@ const Footer = () => {
                                 </div>
                                 <h3 className="font-bold text-white text-lg">官方社群</h3>
                             </div>
-                            <p className="text-sm text-gray-300 mb-6 leading-relaxed font-medium">加入 Discord 獲取最新的更新資訊。</p>
+                            <p className="text-sm text-gray-300 mb-6 leading-relaxed font-medium">沒有官方社群，哈哈。</p>
                             <div className="space-y-3">
-                                <a href="#" target="_blank" className="flex items-center gap-2 text-sm text-white hover:text-blue-400 transition-colors font-medium">
+                                <RouterLink to="#" className="flex items-center gap-2 text-sm text-white hover:text-blue-400 transition-colors font-medium">
                                     <div className="w-1.5 h-1.5 rounded-full bg-blue-500" /> Discord 社群
-                                </a>
+                                </RouterLink>
                                 <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" className="flex items-center gap-2 text-sm text-white hover:text-red-400 transition-colors font-medium">
                                     <div className="w-1.5 h-1.5 rounded-full bg-red-500" /> YouTube 頻道
                                 </a>

@@ -18,7 +18,7 @@ const DownloadAndSetup = () => {
                             <p className="text-gray-400 leading-relaxed text-base">
                                 前往雲端空間下載檔案。此步驟將獲取包含地圖數據與指令包的完整壓縮包。
                             </p>
-                            <a href="#" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-md text-sm font-medium transition-all shadow-lg shadow-blue-600/10 cursor-default">
+                            <a href="https://drive.google.com/file/d/18_w8wA4GYdBS2WM1Oz_8vcaXnUOG6Lx8/view?usp=sharing" target="_blank" className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-500 text-white rounded-md text-sm font-medium transition-all shadow-lg shadow-blue-600/10 cursor-default">
                                 <Globe size={18} /> 前往Google雲端
                             </a>
                         </div>
@@ -30,8 +30,8 @@ const DownloadAndSetup = () => {
                                     <X size={12} className="ml-auto text-gray-400" />
                                 </div>
                                 <div className="ml-auto flex h-full items-start">
-                                    <div className="w-10 h-10 flex items-center justify-center text-gray-600"><Minus size={16}/></div>
-                                    <div className="w-10 h-10 flex items-center justify-center text-gray-600"><Square size={12}/></div>
+                                    <div className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-300"><Minus size={16}/></div>
+                                    <div className="w-10 h-10 flex items-center justify-center text-gray-600 hover:bg-gray-300"><Square size={12}/></div>
                                     <div className="w-12 h-10 flex items-center justify-center hover:bg-red-500 hover:text-white text-gray-600"><X size={16}/></div>
                                 </div>
                             </div>
@@ -40,7 +40,7 @@ const DownloadAndSetup = () => {
                                     <ArrowLeft size={18} /><ArrowRight size={18} /><RotateCw size={16} />
                                 </div>
                                 <div className="flex-1 h-7 bg-[#f1f3f4] rounded-full px-4 flex items-center text-[12px] text-gray-500">
-                                    <Lock size={12} className="mr-2 text-green-600" /> drive.google.com/file/d/shrinktag_v1...
+                                    <Lock size={12} className="mr-2 text-green-600" /> drive.google.com/file/d/18_w8wA4GYdBS2WM1Oz...
                                 </div>
                             </div>
                             <div className="flex-1 bg-white relative p-8 flex flex-col items-center justify-center">
@@ -49,8 +49,8 @@ const DownloadAndSetup = () => {
                                         <FileArchive size={56} className="text-blue-500" />
                                     </div>
                                     <div className="text-center">
-                                        <div className="text-lg font-bold text-gray-700">shrinktag_v1.zip</div>
-                                        <div className="text-sm text-gray-400 mt-1">14.2 MB</div>
+                                        <div className="text-lg font-bold text-gray-700">縮小鬼抓人.zip</div>
+                                        <div className="text-sm text-gray-400 mt-1">12.2 MB</div>
                                     </div>
                                     <div className="w-full py-3.5 bg-[#1a73e8] rounded-[4px] text-center text-sm text-white font-medium relative overflow-hidden">
                                         下載
@@ -100,7 +100,7 @@ const DownloadAndSetup = () => {
                                 <div className="absolute z-20 pointer-events-none animate-[win10-drag-fix_5s_infinite]">
                                     <div className="flex flex-col items-center w-16 p-1 bg-blue-100/60 border border-blue-400 rounded shadow-sm relative">
                                         <Folder size={28} className="text-yellow-500 fill-yellow-500" />
-                                        <span className="text-[9px] text-gray-800 text-center leading-tight font-medium">world</span>
+                                        <span className="text-[9px] text-gray-800 text-center leading-tight font-medium">hns</span>
                                         <MousePointer2 size={16} className="absolute -bottom-1 -right-1 text-black fill-white drop-shadow-md" />
                                     </div>
                                 </div>
@@ -109,7 +109,7 @@ const DownloadAndSetup = () => {
                         <div className="space-y-6 lg:order-2 order-1">
                             <h2 className="text-2xl font-bold text-white tracking-tight">配置資料夾路徑</h2>
                             <p className="text-gray-300 text-[16px] leading-relaxed">
-                                將解壓出的 <code className="text-white font-bold px-1">world</code> 資料夾移動至伺服器根目錄。確保其與 <code className="text-gray-300">server.jar</code> 處於同一層級。
+                                將解壓出的 <code className="text-white font-bold px-1">hns</code> 資料夾移動至伺服器根目錄。確保其與 <code className="text-gray-300">server.jar</code> 處於同一層級。
                             </p>
                             <div className="flex items-center gap-3 p-4 rounded-lg bg-white/[0.03] border border-white/5">
                                 <AlertCircle size={16} className="text-amber-500 shrink-0" />

@@ -8,32 +8,31 @@ const Main = () => {
     return (
         <section id="hero" className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-black select-none">
             <div className="absolute inset-0 z-0 pointer-events-none">
-                <div 
+                <div
                     className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
                     style={{
                         filter: 'brightness(0.4) contrast(1.2)'
                     }}
                 />
                 <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-blue-600/30 blur-[150px] rounded-full animate-pulse" />
-                <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-600/20 blur-[130px] rounded-full animate-pulse" 
-                     style={{ animationDelay: '1s' }} />
+                <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-purple-600/20 blur-[130px] rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black" />
                 <div className="absolute inset-0 opacity-30 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
             </div>
 
-            <motion.div 
+            <motion.div
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 1, ease: "easeOut" }}
                 className="relative z-10 text-center px-6"
             >
                 <div className="mb-12">
-                    <motion.h1 
+                    <motion.h1
                         className="text-7xl md:text-9xl font-bold tracking-tighter text-white mb-4 drop-shadow-[0_10px_50px_rgba(0,0,0,0.8)]"
                     >
                         縮小鬼抓人
                     </motion.h1>
-                    <motion.p 
+                    <motion.p
                         initial={{ opacity: 0, letterSpacing: "0.2em" }}
                         animate={{ opacity: 1, letterSpacing: "1.2em" }}
                         transition={{ delay: 0.8, duration: 1 }}
@@ -54,6 +53,7 @@ const Main = () => {
                         立即下載
                     </Link>
 
+                    {/*
                     <a
                         href="#"
                         target="_blank"
@@ -63,6 +63,7 @@ const Main = () => {
                         <Play size={20} fill="currentColor" />
                         觀看預告
                     </a>
+                    */}
                 </div>
             </motion.div>
 

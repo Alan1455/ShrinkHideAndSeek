@@ -27,7 +27,7 @@ const Download = () => {
                 </div>
 
                 <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
-                    <a href="#" target="_blank" rel="noopener noreferrer"
+                    <a href="https://drive.google.com/file/d/18_w8wA4GYdBS2WM1Oz_8vcaXnUOG6Lx8/view?usp=sharing" target="_blank" rel="noopener noreferrer"
                         className="group flex items-center justify-center gap-3 px-12 py-6 bg-white text-black rounded-full font-bold text-xl hover:bg-blue-50 transition-all hover:scale-105 active:scale-95 shadow-[0_0_30px_rgba(255,255,255,0.2)]"
                     >
                         <DownloadIcon size={24} className="group-hover:translate-y-0.5 transition-transform" />

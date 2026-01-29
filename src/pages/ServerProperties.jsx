@@ -29,7 +29,7 @@ hardcore=false
 hide-online-players=false
 initial-disabled-packs=
 initial-enabled-packs=vanilla
-level-name=world
+level-name=hns
 level-seed=
 level-type=default
 log-ips=true
@@ -75,7 +75,7 @@ white-list=false`;
         { key: "enable-command-block=true", desc: "必須開啟，否則非常多邏輯無法運作。" },
         { key: "gamemode=adventure", desc: "必須設定，冒險模式可防止玩家破壞場景。" },
         { key: "allow-flight=true", desc: "必須開啟，不開啟有回朔的可能。" },
-        { key: "level-name=world", desc: "必須確保與下載的地圖資料夾名稱一致。" }
+        { key: "level-name=hns", desc: "必須確保與下載的地圖資料夾名稱一致。" }
     ];
     return (
         <div className="space-y-8">
