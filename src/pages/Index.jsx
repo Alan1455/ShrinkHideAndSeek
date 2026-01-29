@@ -7,7 +7,7 @@ const Index = () => {
         {
             title: "開始遊玩",
             links: [
-                { name: "安裝指南", path: "/docs/download", icon: <Zap size={16} />, desc: "地圖與材質包部署教學" },
+                { name: "安裝指南", path: "/docs/download", icon: <Zap size={16} />, desc: "地圖部署教學" },
                 { name: "常見問題", path: "/docs/faq", icon: <HelpCircle size={16} />, desc: "解決遊戲中的各種疑問" }
             ],
             color: "text-blue-400"

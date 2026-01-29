@@ -13,8 +13,7 @@ const TermsOfService = () => (
                 </h2>
                 <p className="text-gray-400 text-base leading-relaxed">
                     本作品的所有權歸屬於 <span className="text-pink-400 font-bold">Alan</span> & <span className="text-red-500 font-bold">fm487</span> & <span className="text-cyan-400 font-bold">Arctic_Peng</span>。
-                    您可以自由地下載、安裝並與朋友遊玩。然而，您<span className="text-red-400 font-bold">不可以</span>將本作品的任何原始碼、
-                    材質包資源進行商業性轉售，或在未經授權的情況下聲稱為您的原創作品。
+                    您可以自由地下載、安裝並與朋友遊玩。然而，您<span className="text-red-400 font-bold">不可以</span>將本作品的任何原始碼進行商業性轉售，或在未經授權的情況下聲稱為您的原創作品。
                 </p>
             </div>
             <div className="group p-8 rounded-3xl bg-white/[0.02] border border-white/10 hover:border-red-500/40 transition-all">

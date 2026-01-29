@@ -20,14 +20,14 @@ const AboutTeam = () => {
         {
             name: "fm487",
             avatar: new URL('../assets/fm487.webp', import.meta.url).href,
-            roles: ["核心邏輯開發", "指令包編寫", "音效與材質設計"],
+            roles: ["核心邏輯開發", "指令包編寫"],
             color: "from-red-500/20 to-red-500/5",
             glow: "group-hover:shadow-[0_0_30px_rgba(239,68,68,0.15)]",
             border: "border-red-500/30",
             text: "text-red-400",
             tags: ["Audio", "Commands", "Texture pack"],
             quote: "蛤",
-            desc: "專注於技術細節，透過精密的指令編寫與材質包製作，賦予地圖獨特的沉浸體驗。"
+            desc: "專注於技術細節，透過精密的指令編寫，賦予地圖獨特的沉浸體驗。"
         },
         {
             name: "Arctic_Peng",

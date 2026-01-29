@@ -123,7 +123,7 @@ const Footer = () => {
                                 </div>
                                 <div className="flex flex-col gap-1">
                                     <span className="text-sm font-bold text-red-500">fm487</span>
-                                    <span className="text-[11px] text-gray-300 font-medium">指令編寫 · 材質包製作</span>
+                                    <span className="text-[11px] text-gray-300 font-medium">指令編寫 · 創意設計</span>
                                 </div>
                                 <div className="flex flex-col gap-1">
                                     <span className="text-sm font-bold text-cyan-400">Arctic_Peng</span>
